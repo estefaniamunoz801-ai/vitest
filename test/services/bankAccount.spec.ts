@@ -2,12 +2,37 @@ import {it, describe, expect} from "vitest"
 import {BankAccountService} from "../../src/services/bankAccount.service"
 
 describe("BankAccountService", () => {
-    it("create account with initial balance", async () =>{
+    it("should create account with initial balance", async () =>{
         const service = new BankAccountService();
         const account = await service.createAccount(4500);
 
         expect(account.balance).toBe(4500);
-        expect(account.movements.length).toBe(1)
+        expect(account.movements.length).toBe(1);
+    })
+
+    it("should store the movements correctly", async () => {
+        const service = new BankAccountService();
+        const account = await service.createAccount(1500);
+
+        await service.withdraw(account,1000);
+        await service.deposit(account,700);
+        
+        const movements = service.getMovements(account);
+
+        expect(movements).toHaveLength(3);
+        expect(movements[1].type).toBe('withdrawal');
+        expect(movements[2].amount).toBe(700);
+    })
+
+    it("should return the updated balance after several movements", async () =>{
+        const service = new BankAccountService();
+        const account = await service.createAccount(5200);
+        await service.deposit(account,1000);
+        await service.withdraw(account,2000);
+
+        const balance = await service.getBalance(account);
+
+        expect(account.balance).toBe(4200)
     })
 
     it("should throw an error if initial balance is negative", async () => {

@@ -28,11 +28,11 @@ export class BankAccountService implements IBankAccountService {
         return account;
     }
 
-    getBalance(account: BankAccount): number {
+    getBalance(account: BankAccount): number { //
         return account.balance;
     }
 
-    getMovements(account: BankAccount): Movements[] {
+    getMovements(account: BankAccount): Movements[] { //
         return account.movements;
     }
 
@@ -49,9 +49,9 @@ export class BankAccountService implements IBankAccountService {
         }
     }
 
-    private addMovement(account: BankAccount, type: 'deposit' | 'withdrawal', amount: number): Movements {
+    private addMovement(account: BankAccount, type: 'deposit' | 'withdrawal', amount: number): Movements { //
         const movement: Movements = { type, amount, date: new Date() };
-        account.movements.push(movement);
+        //account.movements.push(movement);
         return movement;
     }
 
