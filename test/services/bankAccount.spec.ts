@@ -30,7 +30,7 @@ describe("BankAccountService", () => {
         await service.deposit(account,1000);
         await service.withdraw(account,2000);
 
-        const balance = await service.getBalance(account);
+        const balance = service.getBalance(account);
 
         expect(account.balance).toBe(4200)
     })

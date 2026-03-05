@@ -1,7 +1,6 @@
 import { BankAccount, Movements, IBankAccountService } from "./interfaces/bankAccount.interface";
 
 export class BankAccountService implements IBankAccountService {
-    constructor() {}
 
     async createAccount(initialBalance: number): Promise<BankAccount> {
         this.validateInitialBalance(initialBalance);
@@ -51,7 +50,6 @@ export class BankAccountService implements IBankAccountService {
 
     private addMovement(account: BankAccount, type: 'deposit' | 'withdrawal', amount: number): Movements { //
         const movement: Movements = { type, amount, date: new Date() };
-        //account.movements.push(movement);
         return movement;
     }
 

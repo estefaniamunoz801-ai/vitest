@@ -1,7 +1,6 @@
 import { IEmployeeService, Employee } from "./interfaces/employee.interface";
 
 export class EmployeeService implements IEmployeeService {
-    constructor() {}
 
     async createEmployee(employee:Employee):Promise<Employee>{
         this.validateEmployee(employee);
