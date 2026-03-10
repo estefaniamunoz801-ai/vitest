@@ -54,7 +54,7 @@ export class BankAccountService implements IBankAccountService {
     }
 
     private validateSufficientFunds(account: BankAccount, amount: number): void {
-        if (account.balance < amount) {
+        if (account.balance <= amount) {
             throw new Error("Insufficient balance");
         }
     }
